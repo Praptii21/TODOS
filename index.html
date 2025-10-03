@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Welcome, {{ user.username }}!</h2>
+
+    <!-- Add Todo Form -->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h4>Add a New Todo</h4>
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Todo Title</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Enter title" required>
+            </div>
+            <div class="mb-3">
+                <label for="desc" class="form-label">Todo Description</label>
+                <input type="text" class="form-control" name="desc" id="desc" placeholder="Enter description" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Todo</button>
+        </form>
+    </div>
+
+    <!-- List of Todos -->
+    <div class="card p-3 shadow-sm">
+        <h4>Your Todos</h4>
+        {% if allTodo|length == 0 %}
+            <div class="alert alert-info mt-3" role="alert">
+                No todos found. Add your first todo now!
+            </div>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-hover mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Created At</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for todo in allTodo %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ todo.title }}</td>
+                            <td>{{ todo.desc }}</td>
+                            <td>{{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                <a href="{{ url_for('update', sno=todo.sno) }}" class="btn btn-sm btn-warning me-1">Update</a>
+                                <a href="{{ url_for('delete', sno=todo.sno) }}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+    </div>
+</div>
+
+{% endblock body %}
