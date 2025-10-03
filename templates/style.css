@@ -1,0 +1,52 @@
+/* Style for the search form in navbar */
+.navbar .form-control[type="search"] {
+    width: 200px;             /* Default width */
+    transition: width 0.4s ease, box-shadow 0.3s ease;
+    border-radius: 25px;      /* Rounded input */
+    padding: 6px 12px;
+}
+
+.navbar .form-control[type="search"]:focus {
+    width: 300px;             /* Expands on focus */
+    box-shadow: 0 0 8px rgba(33, 150, 243, 0.6);  /* subtle glow */
+}
+
+.navbar .btn[type="submit"] {
+    border-radius: 25px;       /* Rounded button */
+    padding: 6px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .btn[type="submit"]:hover {
+    background-color: #2196F3; /* Darker blue on hover */
+    color: white;
+    border-color: #2196F3;
+}
+
+/* Optional: Add a small gap between input and button */
+.navbar .form-control[type="search"] + .btn {
+    margin-left: 6px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333;
+  padding: 10px 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+nav .btn {
+  background: #007BFF;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+nav .btn:hover {
+  background: #0056b3;
+}
